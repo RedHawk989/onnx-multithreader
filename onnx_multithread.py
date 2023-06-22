@@ -13,8 +13,8 @@ import sys
 # Config variables
 num_threads = 2 # Number of python threads to use (using ~1 more than needed to acheive wanted fps yeilds lower cpu usage)
 queue_max_size = num_threads + 4 # Optimize for best CPU usage, Memory, and Latency. A maxsize is needed to not create a potential memory leak.
-video_src = 'DikablisSA_2_1.mp4'
-model_path = 'C:/Users/beaul/PycharmProjects/EyeTrackVR/EyeTrackApp/Models/mommy062023.onnx'
+video_src = 'path/to/video or UVC port number'
+model_path = 'path/to/the/model.onnx'
 interval = 1  # FPS print update rate
 visualize_output = False 
 low_priority = True # set process priority to low
