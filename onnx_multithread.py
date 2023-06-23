@@ -1,5 +1,5 @@
 import os
-os.environ["OMP_NUM_THREADS"] = "1" #  very important to reduce CPU usage
+os.environ["OMP_NUM_THREADS"] = "1" #  Very important to reduce CPU usage. If you are trying to hit max FPS possible, you may need to up this number.
 import threading
 import cv2
 import onnxruntime
@@ -11,15 +11,15 @@ import psutil, os
 import sys
 
 # Config variables
-num_threads = 2 # Number of python threads to use (using ~1 more than needed to acheive wanted fps yeilds lower cpu usage)
-queue_max_size = num_threads + 4 # Optimize for best CPU usage, Memory, and Latency. A maxsize is needed to not create a potential memory leak.
+num_threads = 2 # Number of Python threads to use (using ~1 more than needed to achieve wanted fps yields lower CPU usage)
+queue_max_size = num_threads + 4 # Optimize for best CPU usage, Memory, and Latency. A max size is needed to not create a potential memory leak.
 video_src = 'path/to/video or UVC port number'
 model_path = 'path/to/the/model.onnx'
 interval = 1  # FPS print update rate
 visualize_output = False 
-low_priority = True # set process priority to low
+low_priority = True # Set process priority to low
 print_fps = True 
-limit_fps = False # do not enable along side visualize_output
+limit_fps = False # Do not enable alongside visualize_output
 limited_fps = 60
 
 # Init variables
@@ -42,7 +42,7 @@ opts.optimized_model_filepath = ''
 ort_session = onnxruntime.InferenceSession(model_path, opts, providers=['CPUExecutionProvider'])
 
 if low_priority:
-    process = psutil.Process(os.getpid()) # set process priority to low
+    process = psutil.Process(os.getpid()) # Set process priority to low
     try:
         sys.getwindowsversion()
     except AttributeError:
@@ -118,7 +118,7 @@ while cap.isOpened():
     if not ret:
         break
 
-    frame = cv2.resize(frame, (112, 112)) # resize frame before sending to queue (likely only benificial if downsizing)
+    frame = cv2.resize(frame, (112, 112)) # Resize frame before sending to queue (likely only beneficial if downsizing)
 
     run_onnx_model(queues, frame)
     if not output_queue.empty():
